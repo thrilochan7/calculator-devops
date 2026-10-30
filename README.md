@@ -58,11 +58,12 @@ docker compose down
 
 Stages: **Checkout → Build → Test → Docker Build → Push → Deploy**, with an email on success/failure.
 
+The pipeline is written for Jenkins running on Windows (`bat` / `powershell` steps).
+It polls GitHub every 2 minutes (Poll SCM), since a localhost Jenkins can't receive GitHub webhooks.
+
 Setup:
-1. Install plugins: Git, GitHub, Pipeline, JUnit, Mailer (Docker and Maven must be on the Jenkins machine).
+1. Install plugins: Git, Pipeline, JUnit, Mailer (Docker and Maven must be on the Jenkins machine).
 2. Add a *Username with password* credential with ID `dockerhub-creds` (Docker Hub username + access token).
 3. Configure SMTP in *Manage Jenkins → System → E-mail Notification*.
 4. In `Jenkinsfile`, set `DOCKER_IMAGE` to `<your-dockerhub-username>/calculator-devops`.
-5. Create a *Pipeline* job → *Pipeline script from SCM* → this repo.
-6. In GitHub repo → Settings → Webhooks, add `http://<jenkins-url>/github-webhook/`.
-   (If Jenkins isn't publicly reachable, use ngrok, or switch the trigger to `pollSCM('H/2 * * * *')`.)
+5. Create a *Pipeline* job → *Pipeline script from SCM* → this repo, branch `*/main`.
