@@ -2,9 +2,8 @@ pipeline {
     agent any
 
     environment {
-        // Change these two values to your own
-        DOCKER_IMAGE = 'YOUR_DOCKERHUB_USERNAME/calculator-devops'
-        NOTIFY_EMAIL = 'sasanklingareddy@gmail.com'
+        DOCKER_IMAGE = 'thrilochan7/calculator-devops'
+        NOTIFY_EMAIL = 'thrilochanreddy7@gmail.com'
         IMAGE_TAG    = "${env.BUILD_NUMBER}"
     }
 
