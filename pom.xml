@@ -26,6 +26,12 @@
     <build>
         <finalName>calculator</finalName>
         <plugins>
+            <!-- Pinned so older Maven versions don't fall back to Java 5 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
